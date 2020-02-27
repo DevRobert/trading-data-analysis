@@ -10,10 +10,12 @@ import java.io.IOException;
 public class CsvFileSource implements Step {
     private String fileName;
     private DataType[] dataTypes;
+    private String splitCharacter;
 
-    public CsvFileSource(String fileName, DataType[] dataTypes) {
+    public CsvFileSource(String fileName, DataType[] dataTypes, String splitCharacter) {
         this.fileName = fileName;
         this.dataTypes = dataTypes;
+        this.splitCharacter = splitCharacter;
     }
 
     public void run(DataFlowTarget dataFlowTarget) {
@@ -38,7 +40,7 @@ public class CsvFileSource implements Step {
 
             while ((line = bufferedReader.readLine()) != null) {
                 rowNumber++;
-                String parts[] = line.split(";");
+                String parts[] = line.split(this.splitCharacter);
 
                 Object[] values = new Object[this.dataTypes.length];
 

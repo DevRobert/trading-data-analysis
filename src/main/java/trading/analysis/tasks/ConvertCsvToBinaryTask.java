@@ -38,7 +38,7 @@ public class ConvertCsvToBinaryTask {
         Boolean[] removeFields = removeFieldList.toArray(new Boolean[0]);
         DataType[] targetDataTypes = targetDataTypeList.toArray(new DataType[0]);
 
-        new CsvFileSource(csvInputFileName, sourceDataTypes).run(
+        new CsvFileSource(csvInputFileName, sourceDataTypes, ";").run(
                 new RemoveFields(removeFields,
                         new BinaryFileSink(binaryOutputFileName, targetDataTypes)));
 

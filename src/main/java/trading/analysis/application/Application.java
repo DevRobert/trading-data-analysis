@@ -1,12 +1,10 @@
 package trading.analysis.application;
 
 import trading.analysis.definition.AnalysisDefinitions;
+import trading.analysis.definition.DataType;
 import trading.analysis.definition.IndicatorDefinition;
 import trading.analysis.definition.StrategyDefinition;
-import trading.analysis.tasks.AggregateDataTask;
-import trading.analysis.tasks.AnalyzeAggregatedDataTask;
-import trading.analysis.tasks.ConvertCsvToBinaryTask;
-import trading.analysis.tasks.RecoverCsvFromBinaryTask;
+import trading.analysis.tasks.*;
 
 import java.io.*;
 
@@ -31,6 +29,14 @@ public class Application {
 
         // new AggregateDataTask().run(analysisDefinitions, fullBinaryFileName, aggregatedCsvFileName, parameterStatisticsCsvFileName);
 
-        new AnalyzeAggregatedDataTask().run(analysisDefinitions, aggregatedCsvFileName, aggregatedParameterStatisticsCsvFileName);
+        // new AnalyzeAggregatedDataTask().run(analysisDefinitions, aggregatedCsvFileName, aggregatedParameterStatisticsCsvFileName);
+
+        new MergeCsvsTask().run(
+                "C:\\Users\\robert\\GitHub\\trading-data-import\\downloads 2020-02-25",
+                "C:\\Users\\robert\\GitHub\\trading-data-import\\downloads-merged.csv",
+                new String[] { "timestamp", "open", "high", "low", "close", "adjusted_close", "volume", "dividend_amount", "split_coefficient" },
+                new DataType[] { DataType.String, DataType.Float, DataType.Float, DataType.Float, DataType.Float, DataType.Float, DataType.Integer, DataType.Float, DataType.Float },
+                ","
+        );
     }
 }

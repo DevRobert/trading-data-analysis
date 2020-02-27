@@ -50,3 +50,4 @@ fabric.properties
 
 #Misc
 .gradle
+build

@@ -65,7 +65,7 @@ public class AnalyzeAggregatedDataTask {
 
         DataType[] sourceDataTypes = sourceDataTypeList.toArray(new DataType[0]);
 
-        new CsvFileSource(aggregatedDataCsvInputFileName, sourceDataTypes).run(
+        new CsvFileSource(aggregatedDataCsvInputFileName, sourceDataTypes, ";").run(
                 new Transform(transformInput,
                         new CreateParameterStatistics(analysisDefinitions.getRelevantIndicatorDefinitions(), analysisDefinitions.getStrategyDefinition().getParameterDefinitions(), aggregatedParameterStatisticsOutputFileName)));
     }
